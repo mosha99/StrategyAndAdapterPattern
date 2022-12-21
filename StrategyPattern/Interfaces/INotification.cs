@@ -2,5 +2,5 @@
 
 public interface INotification
 {
-    void SendNotification(Contacts contacts);
+    void SendNotification(Contacts contacts , string Message);
 }

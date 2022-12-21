@@ -5,33 +5,54 @@
             Id = 1,
             Name = "Moein",
             Family = "Sha",
-            Contacts = new Contacts()
-            {
-                Id = 1,
-                Email = "mosha.dnd@gmail.com",
-                HomeAddress = "Tehran - Gandy",
-                MobileNumber = "09013231040"
-            }
+            Email = "mosha.dnd@gmail.com",
+            HomeAddress = "Tehran - Gandy",
+            MobileNumber = "09013231040"
+
         } ,
     new User()
         {
             Id = 2,
             Name = "Ali",
             Family = "Sha",
-            Contacts = new Contacts()
-            {
-                Id = 1,
-                Email = "Ali.dnd@gmail.com",
-                HomeAddress = "Tehran - Azadi",
-                MobileNumber = "09013231041"
-            }
+            Email = "Ali.dnd@gmail.com",
+            HomeAddress = "Tehran - Azadi",
+            MobileNumber = "09013231041"
+
         }
 };
 
+Factory factory = new Factory()
+{
+    Id = 1,
+    Name = "MoFact",
+    Mail = "Mo.fact@gmail.com",
+    Description = "factory for iphone",
+    Address = "tehran valiAsr",
+    Admin = users[0],
+};
 
+Action<Contactable, string> SendByAllMethod = (contactable, Message) =>
+ {
+     contactable.SetNotificationMethod("Sms");
+     contactable.SendNotification(Message);
 
+     contactable.SetNotificationMethod("mail");
+     contactable.SendNotification(Message);
 
-while (true)
+     contactable.SetNotificationMethod("Letter");
+     contactable.SendNotification(Message);
+ };
+
+Contactable contactable = new UserContactor(users[0]);
+SendByAllMethod(contactable, "Hello Coustomer");
+
+Console.WriteLine("**************");
+
+contactable = new UserContactor(new FactoryAdapter(factory));
+SendByAllMethod(contactable, "Helo Factory");
+
+/*while (true)
 {
     try
     {
@@ -42,7 +63,6 @@ while (true)
         Console.Write("Enter a Send Method for User : ");
         String method = Console.ReadLine();
 
-        Contactable contactable = new UserNotificationAdapter(user);
 
         contactable.SetNotificationMethod(method);
         contactable.SendNotification();
@@ -56,4 +76,4 @@ while (true)
     Console.WriteLine();
     Console.WriteLine("*************************************************************");
     Console.WriteLine();
-}
+}*/

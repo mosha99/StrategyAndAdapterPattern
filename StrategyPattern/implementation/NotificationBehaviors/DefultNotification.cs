@@ -2,7 +2,7 @@
 
 public class DefultNotification : INotification
 {
-    public void SendNotification(Contacts contacts)
+    public void SendNotification(Contacts contacts , string message)
     {
         throw new Exception("Method Not Selected");
     }

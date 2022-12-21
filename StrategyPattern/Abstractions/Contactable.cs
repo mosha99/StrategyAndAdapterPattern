@@ -5,6 +5,7 @@ public abstract class Contactable
     {
     }
 
+
     public abstract Contacts contacts { get;}
     public INotification NotificationBehavior { get; private set; } = new DefultNotification();
 
@@ -27,9 +28,9 @@ public abstract class Contactable
 
         NotificationBehavior = NotificationMethod;
     }
-    public void SendNotification()
+    public void SendNotification(string Message)
     {
-        NotificationBehavior.SendNotification(contacts);
+        NotificationBehavior.SendNotification(contacts,Message);
     }
 }
 
